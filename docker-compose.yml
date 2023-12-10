@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    # ports:
+    #   - '5464:5432'
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    stdin_open: true # for biding.pry
+    tty: true # for biding.pry
+    volumes:
+      - .:/chess_results
+    ports:
+      - "3007:3000"
+    depends_on:
+      - db

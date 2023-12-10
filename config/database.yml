@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: chess_results_development
+
+
+test:
+  <<: *default
+  database: chess_results_test
+
+
+production:
+  <<: *default
+  database: chess_results_production
