@@ -1,14 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag('/white_king.png', {:type => 'image/png', :size => '10x20'}) %>
-      対局一覧
-    <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <div class="nav-link">
+            <%= image_tag('/icons/chess-solid.svg', {:size => '25x25'}) %>
+            対局一覧
+          </div>
+        </li>
         <li class="nav-item">
           <%= link_to 'プレイヤー一覧', root_path, { class: "nav-link"} %>
         </li>
