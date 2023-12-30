@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>ChessResults</title>
+<html class="h-100">
+  <head prefix="og: https://ogp.me/ns#">
+    <title>チェス対局結果まとめサイト</title>
+    <% if content_for?(:og_head) %>
+      <%= yield(:og_head) %>
+    <% else %>
+      <meta name="description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレイヤー名や大会名から対局の検索ができます。">
+      <meta property="og:title" content="チェス対局結果まとめ">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="<%= root_url %>">
+      <meta property="og:description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレイヤー名や大会名から対局の検索ができます。">
+      <meta property="og:image" content="<%= root_url %>ogp.jpg">
+    <% end %>
+    <%= favicon_link_tag('/white_king.png', {:type => 'image/png'}) %>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application" %>
+
+    <% if content_for?(:importmap_tag) %>
+      <%= yield(:importmap_tag) %>
+    <% else %>
+      <%= javascript_importmap_tags 'application' %>
+    <% end %>
+    <%= yield(:additional_scripts) %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="h-100" style="touch-action: manipulation;">
+    <div class="min-vh-100">
+      <% if content_for?(:header_element) %>
+        <%= yield(:header_element) %>
+      <% else %>
+        <div><%= render partial: 'layouts/header' %></div>
+      <% end %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %> alert-dismissible">
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          <%= message %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>
