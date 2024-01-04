@@ -1,2 +1,39 @@
-<h1>Results#index</h1>
-<p>Find me in app/views/results/index.html.erb</p>
+<h1 class="mt-3">対局一覧</h1>
+<div>
+  <p class="mb-0">日本チェス連盟に報告があった対局結果を見ることができます。</p>
+  <p>プレイヤー名・大会名・日付などで検索できます。</p>
+</div>
+
+<div class="border border-primary rounded">
+  <%= form_with model: @search_parameter, url: "/", method: :get, local: true, skip_enforcing_utf8: true, html: {class: "", id: "searchForm"} do |form| %>
+    <div class="align-middle">
+      <div class="h5 p-3 pb-0">
+        <%= image_tag('/icons/magnifying-glass.svg', {:size => '25x25'}) %>
+        条件を指定して対局結果を検索する
+      </div>
+      <hr>
+      <div class="p-3 pt-1">
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+          <%= form.label :ncs_id %>
+          <%= form.text_field :ncs_id %>
+        </div>
+        <hr>
+        <div class="form-group">
+          <%= form.label :tournament %>
+          <%= form.text_field :tournament %>
+        </div>
+        <hr>
+        <div class="form-group">
+          <%= form.label :date_from %>
+          <%= form.date_field :date_from %>
+          ~
+          <%= form.date_field :date_until %>
+        </div>
+        <hr>
+        <%= form.submit "条件を指定して検索", name: nil, class: "btn btn-outline-primary ms-1 btn-sm" %>
+      </div>
+    </div>
+  <% end %>
+</div>
