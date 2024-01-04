@@ -15,6 +15,7 @@
     <%= favicon_link_tag('/white_king.png', {:type => 'image/png'}) %>
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=730">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -36,13 +37,15 @@
       <% else %>
         <div><%= render partial: 'layouts/header' %></div>
       <% end %>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %> alert-dismissible">
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-          <%= message %>
-        </div>
-      <% end %>
-      <%= yield %>
+      <div class="container-md">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %> alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <%= message %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
     </div>
     <%= render partial: 'layouts/footer' %>
   </body>
