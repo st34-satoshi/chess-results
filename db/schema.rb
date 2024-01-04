@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,54 +12,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_04_124847) do
+ActiveRecord::Schema[7.1].define(version: 20_240_104_124_847) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "games", force: :cascade do |t|
-    t.integer "white_id"
-    t.integer "white_rating"
-    t.integer "white_k"
-    t.string "black_id"
-    t.string "black_rating"
-    t.integer "black_k"
-    t.integer "white_point"
-    t.bigint "tournament_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tournament_id"], name: "index_games_on_tournament_id"
+  create_table 'games', force: :cascade do |t|
+    t.integer 'white_id'
+    t.integer 'white_rating'
+    t.integer 'white_k'
+    t.string 'black_id'
+    t.string 'black_rating'
+    t.integer 'black_k'
+    t.integer 'white_point'
+    t.bigint 'tournament_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['tournament_id'], name: 'index_games_on_tournament_id'
   end
 
-  create_table "players", force: :cascade do |t|
-    t.string "ncs_id"
-    t.string "name_en"
-    t.string "name_jp"
-    t.integer "total_game_count"
-    t.integer "total_win_count"
-    t.integer "total_loss_count"
-    t.integer "total_draw_count"
-    t.integer "this_year_game_count"
-    t.integer "this_year_win_count"
-    t.integer "this_year_loss_count"
-    t.integer "this_year_draw_count"
-    t.integer "last_yaer_game_count"
-    t.integer "last_yaer_win_count"
-    t.integer "last_yaer_loss_count"
-    t.integer "last_yaer_draw_count"
-    t.float "total_opponent_rating_average"
-    t.float "this_year_opponent_rating_average"
-    t.float "last_year_opponent_rating_average"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["ncs_id"], name: "index_players_on_ncs_id", unique: true
+  create_table 'players', force: :cascade do |t|
+    t.string 'ncs_id'
+    t.string 'name_en'
+    t.string 'name_jp'
+    t.integer 'total_game_count'
+    t.integer 'total_win_count'
+    t.integer 'total_loss_count'
+    t.integer 'total_draw_count'
+    t.integer 'this_year_game_count'
+    t.integer 'this_year_win_count'
+    t.integer 'this_year_loss_count'
+    t.integer 'this_year_draw_count'
+    t.integer 'last_yaer_game_count'
+    t.integer 'last_yaer_win_count'
+    t.integer 'last_yaer_loss_count'
+    t.integer 'last_yaer_draw_count'
+    t.float 'total_opponent_rating_average'
+    t.float 'this_year_opponent_rating_average'
+    t.float 'last_year_opponent_rating_average'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['ncs_id'], name: 'index_players_on_ncs_id', unique: true
   end
 
-  create_table "tournaments", force: :cascade do |t|
-    t.string "name"
-    t.date "start_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'tournaments', force: :cascade do |t|
+    t.string 'name'
+    t.date 'start_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "games", "tournaments"
+  add_foreign_key 'games', 'tournaments'
 end

@@ -15,5 +15,4 @@ class GameSearchParameter
   def initialize(params)
     super(params.permit(:name, :ncs_id, :tournament, :date_from, :date_until))
   end
-
 end

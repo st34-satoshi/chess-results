@@ -1,0 +1,26 @@
+AllCops:
+  Exclude:
+    - "db/schema.rb"
+    - "bin/bundle"
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 40
+
+Metrics/MethodLength:
+ Max: 30
+
+Naming/VariableNumber:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/BlockLength:
+  Max: 30
