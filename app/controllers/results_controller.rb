@@ -3,6 +3,7 @@
 class ResultsController < ApplicationController
   def index
     @search_parameter = search_params
+    @games = Game.search(@search_parameter)
   end
 
   private

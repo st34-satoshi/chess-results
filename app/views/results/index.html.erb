@@ -7,10 +7,10 @@
 <div class="border border-primary rounded">
   <%= form_with model: @search_parameter, url: "/", method: :get, local: true, skip_enforcing_utf8: true, html: {class: "", id: "searchForm"} do |form| %>
     <div class="align-middle">
-      <div class="h5 p-3 pb-0">
+      <h2 class="h5 p-3 pb-0">
         <%= image_tag('/icons/magnifying-glass.svg', {:size => '25x25'}) %>
         条件を指定して対局結果を検索する
-      </div>
+      </h2>
       <hr>
       <div class="p-3 pt-1">
         <div class="form-group">
@@ -36,4 +36,37 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<h2 class="h5 mt-5">
+  <%= image_tag('/icons/square-poll.svg', {:size => '25x25'}) %>
+  検索結果: <%= [@games.size, 100].min %>件
+</h2>
+<% if @games.size >= 100 %>
+  <span>一度に表示できるのは100件までです。検索条件を絞ることで他の対局を表示できます。</span>
+<% end %>
+<div class="border border-info rounded mt-1">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">白名前</th>
+        <th scope="col">白R</th>
+        <th scope="col">結果</th>
+        <th scope="col">黒名前</th>
+        <th scope="col">黒R</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @games.each do |game| %>
+        <tr>
+          <%# <th scope="row">1</th> %>
+          <td><%= game.white_name_jp %></td>
+          <td><%= game.white_rating %></td>
+          <td><%= result_to_white_s(game.white_point) %></td>
+          <td><%= game.black_name_jp %></td>
+          <td><%= game.black_rating %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
