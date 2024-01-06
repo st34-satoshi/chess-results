@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'results#index'
 
   resources :results, only: %i[index]
+  resources :players, only: %i[show]
 end
