@@ -5,7 +5,7 @@
 </div>
 
 <div class="border border-primary rounded">
-  <%= form_with model: @search_parameter, url: "/", method: :get, local: true, skip_enforcing_utf8: true, html: {class: "", id: "searchForm"} do |form| %>
+  <%= form_with model: @search_parameter, url: "/", method: :get, local: true, skip_enforcing_utf8: true, html: {class: "game-form", id: "searchForm"} do |form| %>
     <div class="align-middle">
       <h2 class="h5 p-3 pb-0">
         <%= image_tag('/icons/magnifying-glass.svg', {:size => '25x25'}) %>
@@ -14,19 +14,17 @@
       <hr>
       <div class="p-3 pt-1">
         <div class="form-group">
-          <%= form.label :name %>
-          <%= form.text_field :name %>
-          <%= form.label :ncs_id %>
-          <%= form.text_field :ncs_id %>
+          <%= form.label :name, "プレイヤー名", class: "label-width" %>
+          <%= form.text_field :name, size: 20 %>
         </div>
         <hr>
         <div class="form-group">
-          <%= form.label :tournament %>
-          <%= form.text_field :tournament %>
+          <%= form.label :tournament, "大会名", class: "label-width" %>
+          <%= form.text_field :tournament, size: 20 %>
         </div>
         <hr>
         <div class="form-group">
-          <%= form.label :date_from %>
+          <%= form.label :date_from, "日付", class: "label-width" %>
           <%= form.date_field :date_from %>
           ~
           <%= form.date_field :date_until %>
@@ -45,7 +43,7 @@
 <% if @games.size >= 100 %>
   <span>一度に表示できるのは100件までです。検索条件を絞ることで他の対局を表示できます。</span>
 <% end %>
-<div class="border border-info rounded mt-1">
+<div class="border border-secondary rounded mt-1 mb-3">
   <table class="table table-striped game-table">
     <thead>
       <tr>
