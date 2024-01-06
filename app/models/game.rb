@@ -16,6 +16,18 @@ class Game < ApplicationRecord
       end
       condition += "(tournaments.name ILIKE '%#{param.tournament}%')"
     end
+    if param.date_from.present?
+      if condition.present?
+        condition += " AND "
+      end
+      condition += "(tournaments.start_at >= '#{param.date_from}')"
+    end
+    if param.date_until.present?
+      if condition.present?
+        condition += " AND "
+      end
+      condition += "(tournaments.start_at <= '#{param.date_until}')"
+    end
     if condition.present?
       condition = "WHERE #{condition}"
     end
@@ -31,5 +43,6 @@ class Game < ApplicationRecord
         "white.name_jp as white_name_jp", "white.name_en as white_name_en",
         "black.name_jp as black_name_jp", "black.name_en as black_name_en"
       )
+      .order(date: :desc)
   end
 end
