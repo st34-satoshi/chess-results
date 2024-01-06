@@ -3,6 +3,12 @@
 class ResultsController < ApplicationController
   def index
     @search_parameter = search_params
+    unless @search_parameter.valid_parameter?
+      @search_parameter.errors.full_messages.each do |message|
+        flash.now[:danger] = message
+      end
+    end
+
     @games = Game.search(@search_parameter)
   end
 

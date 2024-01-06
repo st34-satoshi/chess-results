@@ -15,4 +15,33 @@ class GameSearchParameter
   def initialize(params)
     super(params.permit(:name, :ncs_id, :tournament, :date_from, :date_until))
   end
+
+  def valid_parameter?
+    ok = true
+    Rails.logger.info name
+    unless valid_name?
+      errors.add(:base, 'プレイヤー名に記号などの文字は使えません。日本語と英数字だけを入力してください。')
+      ok = false
+    end
+    unless valid_tournament?
+      errors.add(:base, '大会名に記号などの文字は使えません。日本語と英数字だけを入力してください。')
+      ok = false
+    end
+    ok
+  end
+
+  def valid_name?
+    if name.present? && name.match(/[!@#$%^&*()\=+{};:'",.<>\/?\\|~`]/).present?
+      return false
+    end
+    true
+  end
+
+  def valid_tournament?
+    if tournament.present? && tournament.match(/[!@#$%^&*()\=+{};:'",.<>\/?\\|~`]/).present?
+      return false
+    end
+    true
+  end
+
 end
