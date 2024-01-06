@@ -15,6 +15,9 @@
  */
 
 .game-table 
+  .time-width {
+    width: 50px
+  }
   .name-width {
     width: 100px
   }

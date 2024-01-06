@@ -40,8 +40,8 @@ class Game < ApplicationRecord
       .select(
         "games.*",
         "tournaments.start_at as date", "tournaments.name as tournament_name",
-        "white.name_jp as white_name_jp", "white.name_en as white_name_en",
-        "black.name_jp as black_name_jp", "black.name_en as black_name_en"
+        "white.name_jp as white_name_jp", "white.name_en as white_name_en", "white.ncs_id as white_ncs_id",
+        "black.name_jp as black_name_jp", "black.name_en as black_name_en", "black.ncs_id as black_ncs_id"
       )
       .order(date: :desc)
   end

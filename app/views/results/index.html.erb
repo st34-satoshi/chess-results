@@ -47,6 +47,7 @@
   <table class="table table-striped game-table">
     <thead>
       <tr>
+        <th scope="col" class="text-center time-width">時間</th>
         <th scope="col" class="text-center name-width">白名前</th>
         <th scope="col" class="text-center rating-width">白R</th>
         <th scope="col" class="text-center result-width">結果</th>
@@ -60,10 +61,15 @@
     <tbody>
       <% @games.each do |game| %>
         <tr>
-          <td class="text-center"><%= game.white_name_jp %></td>
+          <td class="text-center"><%= game.time_type %></td>
+          <td class="text-center">
+            <%= link_to game.white_name_jp, player_path(id: game.white_ncs_id) %>
+          </td>
           <td class="text-center"><%= game.white_rating %></td>
           <td class="text-center"><%= result_to_white_s(game.white_point) %></td>
-          <td class="text-center"><%= game.black_name_jp %></td>
+          <td class="text-center">
+            <%= link_to game.black_name_jp, player_path(id: game.black_ncs_id) %>
+          </td>
           <td class="text-center"><%= game.black_rating %></td>
           <td class="text-center"><%= game.date %></td>
           <td class="text-center"><%= game.tournament_name.truncate(15) %></td>

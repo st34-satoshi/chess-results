@@ -22,6 +22,8 @@ module CreateData
     Rails.logger.info "read: #{file}"
     csv_data = CSV.read(file, headers: true)
 
+    time_type = file.include?("ST") ? "ST" : "RP"
+
     # TODO: indexがあっているか確認した方が良い
     csv_data.headers
     white_id_index = 5
@@ -63,7 +65,8 @@ module CreateData
         white:, white_k:, white_rating:,
         black:, black_k:, black_rating:,
         white_point:,
-        tournament:
+        tournament:,
+        time_type:
       )
     end
   end

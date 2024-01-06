@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_124847) do
     t.integer "black_k"
     t.float "white_point"
     t.bigint "tournament_id"
+    t.string "time_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tournament_id"], name: "index_games_on_tournament_id"
