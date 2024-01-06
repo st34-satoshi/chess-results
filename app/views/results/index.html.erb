@@ -46,25 +46,30 @@
   <span>一度に表示できるのは100件までです。検索条件を絞ることで他の対局を表示できます。</span>
 <% end %>
 <div class="border border-info rounded mt-1">
-  <table class="table table-striped">
+  <table class="table table-striped game-table">
     <thead>
       <tr>
-        <th scope="col">白名前</th>
-        <th scope="col">白R</th>
-        <th scope="col">結果</th>
-        <th scope="col">黒名前</th>
-        <th scope="col">黒R</th>
+        <th scope="col" class="text-center name-width">白名前</th>
+        <th scope="col" class="text-center rating-width">白R</th>
+        <th scope="col" class="text-center result-width">結果</th>
+        <th scope="col" class="text-center name-width">黒名前</th>
+        <th scope="col" class="text-center rating-width">黒R</th>
+        <th scope="col" class="text-center date-width ">日付</th>
+        <th scope="col" class="text-center tournament-width">大会名</th>
+        <th scope="col" class=""></th>
       </tr>
     </thead>
     <tbody>
       <% @games.each do |game| %>
         <tr>
-          <%# <th scope="row">1</th> %>
-          <td><%= game.white_name_jp %></td>
-          <td><%= game.white_rating %></td>
-          <td><%= result_to_white_s(game.white_point) %></td>
-          <td><%= game.black_name_jp %></td>
-          <td><%= game.black_rating %></td>
+          <td class="text-center"><%= game.white_name_jp %></td>
+          <td class="text-center"><%= game.white_rating %></td>
+          <td class="text-center"><%= result_to_white_s(game.white_point) %></td>
+          <td class="text-center"><%= game.black_name_jp %></td>
+          <td class="text-center"><%= game.black_rating %></td>
+          <td class="text-center"><%= game.date %></td>
+          <td class="text-center"><%= game.tournament_name.truncate(15) %></td>
+          <td></td>
         </tr>
       <% end %>
     </tbody>

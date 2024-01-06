@@ -7,8 +7,14 @@ class Game < ApplicationRecord
 
   def self.search(param)
     Game
+      .joins("INNER JOIN tournaments ON tournaments.id = games.tournament_id")
       .joins("INNER JOIN players as white ON white.id = games.white_id")
       .joins("INNER JOIN players as black ON black.id = games.black_id WHERE white.name_en ILIKE '%Yama%'")
-      .select("games.*", "white.name_jp as white_name_jp", "black.name_jp as black_name_jp")
+      .select(
+        "games.*",
+        "tournaments.start_at as date", "tournaments.name as tournament_name",
+        "white.name_jp as white_name_jp",
+        "black.name_jp as black_name_jp"
+      )
   end
 end

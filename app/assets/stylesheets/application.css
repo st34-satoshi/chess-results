@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+.game-table 
+  .name-width {
+    width: 100px
+  }
+  .rating-width {
+    width: 80px
+  }
+  .result-width {
+    width: 80px
+  }
+  .date-width {
+    width: 150px
+  }
+  .tournament-width {
+    width: 200px
+  }
