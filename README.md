@@ -27,6 +27,6 @@
 
 ## プロダクションデプロイ
 - config/master.keyを本番環境に用意する
-- `docker compose -f docker-compose.production.yml build`
-- `docker compose -f docker-compose.production.yml run web rails db:migrate:reset RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1`
-- `docker compose -f docker-compose.production.yml up -d`
+- `docker-compose -f docker-compose.production.yml build`
+- `docker-compose -f docker-compose.production.yml run web rails db:migrate:reset RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1`
+- `docker-compose -f docker-compose.production.yml up -d`
