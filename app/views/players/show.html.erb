@@ -1,3 +1,7 @@
+<% content_for :importmap_tag do %>
+  <%= javascript_importmap_tags 'player/show' %>
+<% end %>
+
 <h1 class="mt-3">
   <%= image_tag('/icons/user.svg', {:size => '40x40'}) %>
   <span><%= @player.name_jp %></span>
@@ -11,8 +15,36 @@
   <%= image_tag('/icons/square-poll.svg', {:size => '25x25'}) %>
   スタンダード
 </h2>
-<h4>全期間</h4>
-
+<%# <h4>全期間</h4> %>
+<div class="row">
+  <div class="col-4">
+    <div class="h6 text-center">すべての対局</div>
+    <div class="text-center">
+      <span>
+        合計: 300対局
+      </span>
+    </div>
+    <canvas id="stWholePeriodAllChart" data-win="300" data-loss="100" data-draw="50"></canvas>
+  </div>
+  <div class="col-4">
+    <div class="h6 text-center">白番の対局</div>
+    <div class="text-center">
+      <span>
+        合計: 300対局
+      </span>
+    </div>
+    <canvas id="stWholePeriodWhiteChart" data-win="300" data-loss="100" data-draw="50"></canvas>
+  </div>
+  <div class="col-4">
+    <div class="h6 text-center">黒番の対局</div>
+    <div class="text-center">
+      <span>
+        合計: 300対局
+      </span>
+    </div>
+    <canvas id="stWholePeriodBlackChart" data-win="300" data-loss="100" data-draw="50"></canvas>
+  </div>
+</div>
 
 <h2 class="mt-3">
   <%= image_tag('/icons/square-poll.svg', {:size => '25x25'}) %>
