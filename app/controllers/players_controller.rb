@@ -1,6 +1,8 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all.limit(100)
+    @kind = params[:kind]
+    @kind ||= "games"
+    @players = Player.ranking(@kind)
   end
 
   def show

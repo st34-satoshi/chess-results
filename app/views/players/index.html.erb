@@ -13,10 +13,18 @@
 </div>
 
 <div class="d-flex flex-row mt-3">
-  <div class=""><button type="button" class="btn btn-outline-primary acrive">対局数</button></div>
-  <div class="ms-1"><button type="button" class="btn btn-outline-primary">勝ち数</button></div>
-  <div class="ms-1"><button type="button" class="btn btn-outline-primary">引分数</button></div>
-  <div class="ms-1"><button type="button" class="btn btn-outline-primary">相手平均レーティング</button></div>
+  <div class="">
+    <%= link_to '対局数', players_path(kind: :games), { class: "btn #{@kind == "games" ? "btn-primary" : "btn-outline-primary" }"} %>
+  </div>
+  <div class="ms-1">
+    <%= link_to '勝ち数', players_path(kind: :win), { class: "btn #{@kind == "win" ? "btn-primary" : "btn-outline-primary" }"} %>
+  </div>
+  <div class="ms-1">
+    <%= link_to '引分数', players_path(kind: :draw), { class: "btn #{@kind == "draw" ? "btn-primary" : "btn-outline-primary" }"} %>
+  </div>
+  <div class="ms-1">
+    <%= link_to '相手平均レーティング', players_path(kind: :rating), { class: "btn #{@kind == "rating" ? "btn-primary" : "btn-outline-primary" }"} %>
+  </div>
 </div>
 
 
@@ -37,7 +45,7 @@
           <td class="text-center">
             <%= link_to player.name_jp, player_path(id: player.ncs_id) %>
           </td>
-          <td class="text-center"><%= "値を入れる" %></td>
+          <td class="text-center"><%= player.ranking_value(@kind) %></td>
           <td></td>
         </tr>
       <% end %>
