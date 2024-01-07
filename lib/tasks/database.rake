@@ -35,12 +35,15 @@ namespace :database do
         opponent_rating_sum += game.white_rating
         opponent_rating_count += 1
       end
+      total_opponent_rating_average = 0.0
+      total_opponent_rating_average = opponent_rating_sum / opponent_rating_count.to_f if opponent_rating_count > 0
+      
       player.update(
         total_game_count: total_game_count,
         total_win_count: total_win_count,
         total_draw_count: total_draw_count,
         total_loss_count: total_loss_count,
-        total_opponent_rating_average: opponent_rating_sum / opponent_rating_count.to_f,
+        total_opponent_rating_average: total_opponent_rating_average,
       )
     end
   end
