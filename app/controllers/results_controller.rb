@@ -9,7 +9,7 @@ class ResultsController < ApplicationController
       end
     end
 
-    @games = Game.search(@search_parameter)
+    @games = Game.search(@search_parameter).take(100)
   end
 
   private
