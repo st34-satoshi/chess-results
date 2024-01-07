@@ -14,6 +14,36 @@ namespace :database do
       end
     end
   end
+
+  desc 'プレイヤーごとの統計情報を計算する'
+  task create_player_stats: :environment do
+  Player.all.each do |player|
+      Rails.logger.info "start #{player.name_jp}"
+      total_game_count = player.games.size
+      total_win_count = player.win_games_of("RP").size + player.win_games_of("ST").size 
+      total_draw_count = player.draw_games_of("RP").size + player.draw_games_of("ST").size 
+      total_loss_count = player.loss_games_of("RP").size + player.loss_games_of("ST").size 
+      opponent_rating_sum = 0
+      opponent_rating_count = 0
+      player.white_games.each do |game|
+        next if game.black_rating < 400
+        opponent_rating_sum += game.black_rating
+        opponent_rating_count += 1
+      end
+      player.black_games.each do |game|
+        next if game.white_rating < 400
+        opponent_rating_sum += game.white_rating
+        opponent_rating_count += 1
+      end
+      player.update(
+        total_game_count: total_game_count,
+        total_win_count: total_win_count,
+        total_draw_count: total_draw_count,
+        total_loss_count: total_loss_count,
+        total_opponent_rating_average: opponent_rating_sum / opponent_rating_count.to_f,
+      )
+    end
+  end
 end
 
 module CreateData

@@ -14,7 +14,8 @@
 ### データの用意
 対局結果が入ったcsvファイルを用意する
 
-- `docker compose exec web rake database:create_data`
+- `docker compose exec web rake database:create_data`: 対局結果を保存する
+- `docker compose exec web rake database:create_player_stats`: プレイヤーごとの統計情報を保存する
 
 ### PR作成
 - `git clone git@github.com:st34-satoshi/chess-results.git`
