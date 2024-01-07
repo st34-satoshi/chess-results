@@ -23,38 +23,12 @@
   <%= image_tag('/icons/square-poll.svg', {:size => '25x25'}) %>
   スタンダード
 </h2>
-<%# <h4>全期間</h4> %>
-<div class="row">
-  <div class="col-4">
-    <div class="h6 text-center">すべての対局</div>
-    <div class="text-center">
-      <span>
-        合計: <%= @player.games_of("ST").size %>対局
-      </span>
-    </div>
-    <canvas id="stWholePeriodAllChart" data-win="<%= @player.win_games_of("ST").size %>" data-loss="<%= @player.loss_games_of("ST").size %>" data-draw="<%= @player.draw_games_of("ST").size %>"></canvas>
-  </div>
-  <div class="col-4">
-    <div class="h6 text-center">白番の対局</div>
-    <div class="text-center">
-      <span>
-        合計: <%= @player.color_games_of("ST", "White").size %>対局
-      </span>
-    </div>
-    <canvas id="stWholePeriodWhiteChart" data-win="<%= @player.color_win_games_of("ST", "White").size %>" data-loss="<%= @player.color_loss_games_of("ST", "White").size %>" data-draw="<%= @player.color_draw_games_of("ST", "White").size %>"></canvas>
-  </div>
-  <div class="col-4">
-    <div class="h6 text-center">黒番の対局</div>
-    <div class="text-center">
-      <span>
-        合計: <%= @player.color_games_of("ST", "Black").size %>対局
-      </span>
-    </div>
-    <canvas id="stWholePeriodBlackChart" data-win="<%= @player.color_win_games_of("ST", "Black").size %>" data-loss="<%= @player.color_loss_games_of("ST", "Black").size %>" data-draw="<%= @player.color_draw_games_of("ST", "Black").size %>"></canvas>
-  </div>
-</div>
+<%= render "stats_doughnut", time_type: "ST" %>
 
 <h2 class="mt-3">
   <%= image_tag('/icons/square-poll.svg', {:size => '25x25'}) %>
   ラピッド
 </h2>
+<%= render "stats_doughnut", time_type: "RP" %>
+
+<div class="mb-5"></div>

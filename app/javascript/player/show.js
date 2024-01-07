@@ -6,13 +6,20 @@ import "chartjs-plugin-datalabels"
 Chart.register(ChartDataLabels);
 
 function drawCharts(){
+  // ST
   const ctxAll = document.getElementById('stWholePeriodAllChart');
   drawDoughnutChart(ctxAll, 'すべての対局')
   const ctxWhite = document.getElementById('stWholePeriodWhiteChart');
   drawDoughnutChart(ctxWhite, '白番の対局')
   const ctxBlack = document.getElementById('stWholePeriodBlackChart');
   drawDoughnutChart(ctxBlack, '黒番の対局')
-
+  // RP
+  const ctxRPAll = document.getElementById('rpWholePeriodAllChart');
+  drawDoughnutChart(ctxRPAll, 'すべての対局')
+  const ctxRPWhite = document.getElementById('rpWholePeriodWhiteChart');
+  drawDoughnutChart(ctxRPWhite, '白番の対局')
+  const ctxRPBlack = document.getElementById('rpWholePeriodBlackChart');
+  drawDoughnutChart(ctxRPBlack, '黒番の対局')
 }
 
 function drawDoughnutChart(ctx, label){
