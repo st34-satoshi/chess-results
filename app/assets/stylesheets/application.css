@@ -21,6 +21,9 @@
   .name-width {
     width: 100px
   }
+  .name-width-long {
+    width: 200px
+  }
   .rating-width {
     width: 80px
   }

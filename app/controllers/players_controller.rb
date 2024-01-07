@@ -1,4 +1,8 @@
 class PlayersController < ApplicationController
+  def index
+    @players = Player.all.limit(100)
+  end
+
   def show
     set_player
   end
