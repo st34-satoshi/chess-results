@@ -16,7 +16,7 @@
 
 .game-table 
   .time-width {
-    width: 50px
+    width: 60px
   }
   .name-width {
     width: 100px
@@ -38,5 +38,5 @@
   }
 .game-form
   .label-width{
-    width: 100px
+    width: 150px
   }
