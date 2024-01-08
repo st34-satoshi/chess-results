@@ -36,3 +36,5 @@
 
 /data/*/*.csv
 /data/*/*.numbers
+
+.DS_Store
