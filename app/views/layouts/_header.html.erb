@@ -6,13 +6,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to root_path, { class: "nav-link"} do %>
+          <%= link_to root_path, { class: "nav-link #{"text-dark fw-bold" if @header_page == "games"}"} do %>
             <%= image_tag('/icons/chess-solid.svg', {:size => '25x25'}) %>
             対局一覧
           <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to 'プレイヤーランキング', players_path, { class: "nav-link"} %>
+        <li class="nav-item ms-4">
+          <%= link_to players_path, { class: "nav-link #{"text-dark fw-bold" if @header_page == "players"}"} do %>
+            <%= image_tag('/icons/ranking-star.svg', {:size => '25x25'}) %>
+            プレイヤーランキング
+          <% end %>
+        </li>
         </li>
       </ul>
     </div>

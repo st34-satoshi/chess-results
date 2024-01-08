@@ -1,4 +1,8 @@
 class PlayersController < ApplicationController
+  before_action ->{
+    set_header_page("players")
+  }
+
   def index
     @kind = params[:kind]
     @kind ||= "games"

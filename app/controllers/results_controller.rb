@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ResultsController < ApplicationController
+  before_action ->{
+    set_header_page("games")
+  }
+
   def index
     @search_parameter = search_params
     unless @search_parameter.valid_parameter?
