@@ -19,7 +19,7 @@ services:
       RAILS_ENV: production
     healthcheck:
       test: "curl http://localhost:3000 || exit 1"
-      interval: 60s
+      interval: 5s
       timeout: 10s
       retries: 5
       start_period: 10s
