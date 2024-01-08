@@ -32,7 +32,7 @@
   <table class="table table-striped game-table">
     <thead>
       <tr>
-        <th scope="col" class="text-center time-width">#</th>
+        <th scope="col" class="text-center time-width">順位</th>
         <th scope="col" class="text-center name-width-long">名前</th>
         <th scope="col" class="text-center rating-width"></th>
         <th scope="col" class=""></th>
@@ -41,7 +41,7 @@
     <tbody>
       <% @players.each_with_index do |player, i| %>
         <tr>
-          <td class="text-center"><%= i %></td>
+          <td class="text-center"><%= i+1 %></td>
           <td class="text-center">
             <%= link_to player.name_jp, player_path(id: player.ncs_id) %>
           </td>
