@@ -11,10 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_01_04_124847) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "games", force: :cascade do |t|
+  create_table "games", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "white_id"
     t.integer "white_rating"
     t.integer "white_k"
@@ -29,7 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_124847) do
     t.index ["tournament_id"], name: "index_games_on_tournament_id"
   end
 
-  create_table "players", force: :cascade do |t|
+  create_table "players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "ncs_id"
     t.string "name_en"
     t.string "name_jp"
@@ -53,7 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_124847) do
     t.index ["ncs_id"], name: "index_players_on_ncs_id", unique: true
   end
 
-  create_table "tournaments", force: :cascade do |t|
+  create_table "tournaments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.date "start_at"
     t.datetime "created_at", null: false

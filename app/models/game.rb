@@ -8,13 +8,13 @@ class Game < ApplicationRecord
   def self.search(param)
     condition = ""
     if param.valid_name?
-      condition += "(white.name_en ILIKE '%#{param.name}%' OR white.name_jp ILIKE '%#{param.name}%' OR black.name_en ILIKE '%#{param.name}%' OR black.name_jp ILIKE '%#{param.name}%')"
+      condition += "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%' OR black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')"
     end
     if param.valid_tournament?
       if condition.present?
         condition += " AND "
       end
-      condition += "(tournaments.name ILIKE '%#{param.tournament}%')"
+      condition += "(tournaments.name LIKE '%#{param.tournament}%')"
     end
     if param.date_from.present?
       if condition.present?
