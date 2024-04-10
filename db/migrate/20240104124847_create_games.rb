@@ -10,6 +10,7 @@ class CreateGames < ActiveRecord::Migration[7.1]
       t.integer :black_rating
       t.integer :black_k
       t.float :white_point
+      t.date :start_at
       t.references :tournament, foreign_key: true
       t.string :time_type
 
