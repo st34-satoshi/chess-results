@@ -5,6 +5,15 @@ class Game < ApplicationRecord
   belongs_to :black, class_name: 'Player', foreign_key: 'black_id'
   belongs_to :tournament
 
+  validates :time_type, inclusion: { in: %w(ST RP) }
+  validate :valid_white_point?
+
+  def valid_white_point?
+    unless [1, 0.5, 0].include? white_point
+      errors.add(:white_point, "not the valid number, 0, 0.5 or 1")
+    end
+  end
+
   def self.search(param)
     condition = ""
     if param.valid_name?

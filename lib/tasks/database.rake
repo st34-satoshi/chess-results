@@ -72,8 +72,10 @@ module CreateData
 
       # gameを保存する
       white_rating = row['White Rating']
+      white_rating = 0 if white_rating.nil?
       white_k = row['White K']
       black_rating = row['Black Rating']
+      black_rating = 0 if black_rating.nil?
       black_k = row['Black K']
       white_point = row['White Point']
       time_type = row['Time']
