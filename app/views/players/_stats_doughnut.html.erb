@@ -7,7 +7,9 @@
         合計: <%= @player.games_of(time_type).size %>対局
       </span>
     </div>
-    <canvas id="<%= time_type.downcase %>WholePeriodAllChart" data-win="<%= @player.win_games_of(time_type).size %>" data-loss="<%= @player.loss_games_of(time_type).size %>" data-draw="<%= @player.draw_games_of(time_type).size %>"></canvas>
+    <% if @player.games_of(time_type).size.positive? %>
+      <canvas id="<%= time_type.downcase %>WholePeriodAllChart" data-win="<%= @player.win_games_of(time_type).size %>" data-loss="<%= @player.loss_games_of(time_type).size %>" data-draw="<%= @player.draw_games_of(time_type).size %>"></canvas>
+    <% end %>
   </div>
   <div class="col-4">
     <div class="h6 text-center">白番の対局</div>
@@ -16,7 +18,9 @@
         合計: <%= @player.color_games_of(time_type, "White").size %>対局
       </span>
     </div>
-    <canvas id="<%= time_type.downcase %>WholePeriodWhiteChart" data-win="<%= @player.color_win_games_of(time_type, "White").size %>" data-loss="<%= @player.color_loss_games_of(time_type, "White").size %>" data-draw="<%= @player.color_draw_games_of(time_type, "White").size %>"></canvas>
+    <% if @player.color_games_of(time_type, "White").size.positive? %>
+      <canvas id="<%= time_type.downcase %>WholePeriodWhiteChart" data-win="<%= @player.color_win_games_of(time_type, "White").size %>" data-loss="<%= @player.color_loss_games_of(time_type, "White").size %>" data-draw="<%= @player.color_draw_games_of(time_type, "White").size %>"></canvas>
+    <% end %>
   </div>
   <div class="col-4">
     <div class="h6 text-center">黒番の対局</div>
@@ -25,6 +29,8 @@
         合計: <%= @player.color_games_of(time_type, "Black").size %>対局
       </span>
     </div>
-    <canvas id="<%= time_type.downcase %>WholePeriodBlackChart" data-win="<%= @player.color_win_games_of(time_type, "Black").size %>" data-loss="<%= @player.color_loss_games_of(time_type, "Black").size %>" data-draw="<%= @player.color_draw_games_of(time_type, "Black").size %>"></canvas>
+    <% if @player.color_games_of(time_type, "Black").size.positive? %>
+      <canvas id="<%= time_type.downcase %>WholePeriodBlackChart" data-win="<%= @player.color_win_games_of(time_type, "Black").size %>" data-loss="<%= @player.color_loss_games_of(time_type, "Black").size %>" data-draw="<%= @player.color_draw_games_of(time_type, "Black").size %>"></canvas>
+    <% end %>
   </div>
 </div>
