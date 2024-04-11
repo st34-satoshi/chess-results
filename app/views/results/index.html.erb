@@ -62,12 +62,12 @@
           <td class="text-center">
             <%= link_to game.white_name_jp, player_path(id: game.white_ncs_id) %>
           </td>
-          <td class="text-center"><%= game.white_rating %></td>
+          <td class="text-center"><%= rating_format(game.white_rating) %></td>
           <td class="text-center"><%= result_to_white_s(game.white_point) %></td>
           <td class="text-center">
             <%= link_to game.black_name_jp, player_path(id: game.black_ncs_id) %>
           </td>
-          <td class="text-center"><%= game.black_rating %></td>
+          <td class="text-center"><%= rating_format(game.black_rating) %></td>
           <td class="text-center"><%= game.date %></td>
           <td class="text-center"><%= game.tournament_name.truncate(15) %></td>
           <td></td>
