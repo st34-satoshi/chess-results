@@ -50,8 +50,7 @@
         <th scope="col" class="text-center result-width">結果</th>
         <th scope="col" class="text-center name-width">黒名前</th>
         <th scope="col" class="text-center rating-width">黒R</th>
-        <th scope="col" class="text-center date-width ">レーティング公開日</th>
-        <th scope="col" class="text-center tournament-width">大会名</th>
+        <th scope="col" class="text-center date-width ">対局年</th>
         <th scope="col" class=""></th>
       </tr>
     </thead>
@@ -68,8 +67,7 @@
             <%= link_to game.black_name_jp, player_path(id: game.black_ncs_id) %>
           </td>
           <td class="text-center"><%= rating_format(game.black_rating) %></td>
-          <td class="text-center"><%= game.date %></td>
-          <td class="text-center"><%= game.tournament_name.truncate(15) %></td>
+          <td class="text-center"><%= game.date.year %></td>
           <td></td>
         </tr>
       <% end %>
