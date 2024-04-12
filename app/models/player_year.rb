@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class PlayerYear < ApplicationRecord
+  def self.years
+    years = []
+    PlayerYear.order(created_year: "DESC").each do |y|
+      years.push "#{y.created_year}年"
+    end
+    years
+  end
+
   def self.create_player_table(year)
     table_name = "#{year}_players"
     return if ActiveRecord::Base.connection.table_exists? table_name
