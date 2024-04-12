@@ -4,8 +4,7 @@ class PlayersController < ApplicationController
   }
 
   def index
-    @kind = params[:kind]
-    @kind ||= "games"
+    @kind = Player.valid_ranking_kind(params[:kind])
     @players = Player.ranking(@kind)
   end
 

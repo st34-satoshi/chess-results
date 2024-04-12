@@ -4,16 +4,23 @@ class Player < ApplicationRecord
   has_many :white_games, class_name: 'Game', foreign_key: 'white_id'
   has_many :black_games, class_name: 'Game', foreign_key: 'black_id'
 
+  attribute :ranking_kind, :string
+  enum ranking_kind: { games: 'games', win: 'win', draw: 'draw', avg_rating: 'avg_rating' }, _prefix: true
+
   def to_param
     ncs_id
   end
 
+  def self.valid_ranking_kind(kind)
+    return kind if Player::ranking_kinds.values.include? kind
+    Player::ranking_kinds[:games]
+  end
+
   def self.ranking(kind)
-    return Player.order(total_game_count: :desc).limit(100) if kind == "games"
-    return Player.order(total_win_count: :desc).limit(100) if kind == "win"
-    return Player.order(total_draw_count: :desc).limit(100) if kind == "draw"
-    return Player.order(total_opponent_rating_average: :desc).limit(100) if kind == "rating"
-    Player.all.limit(100)
+    return Player.order(total_win_count: :desc).limit(100) if kind == Player::ranking_kinds[:win]
+    return Player.order(total_draw_count: :desc).limit(100) if kind == Player::ranking_kinds[:draw]
+    return Player.order(total_opponent_rating_average: :desc).limit(100) if kind == Player::ranking_kinds[:rating]
+    Player.order(total_game_count: :desc).limit(100) if kind == Player::ranking_kinds[:games] # default is :games
   end
 
   def ranking_value(kind)
