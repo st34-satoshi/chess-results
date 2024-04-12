@@ -1,6 +1,22 @@
 # frozen_string_literal: true
 
 class PlayerYear < ApplicationRecord
+  def self.selected_year(year)
+    year = year.to_i
+    if PlayerYear.find_by(created_year: year).nil?
+      year = "すべて" 
+    else
+      year = "#{year}年"
+    end
+    year
+  end
+
+  def self.valid_year(year)
+    year = year.to_i
+    year = nil if PlayerYear.find_by(created_year: year).nil?
+    year
+  end
+
   def self.years
     years = []
     PlayerYear.order(created_year: "DESC").each do |y|

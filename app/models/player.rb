@@ -17,12 +17,22 @@ class Player < ApplicationRecord
     Player.ranking_kinds[:games]
   end
 
-  def self.ranking(kind)
-    return Player.order(total_win_count: :desc).limit(100) if kind == Player.ranking_kinds[:win]
-    return Player.order(total_draw_count: :desc).limit(100) if kind == Player.ranking_kinds[:draw]
-    return Player.order(total_opponent_rating_average: :desc).limit(100) if kind == Player.ranking_kinds[:avg_rating]
+  def self.ranking(kind, year)
+    if year.nil?
+      return Player.order(total_win_count: :desc).limit(100) if kind == Player.ranking_kinds[:win]
+      return Player.order(total_draw_count: :desc).limit(100) if kind == Player.ranking_kinds[:draw]
+      return Player.order(total_opponent_rating_average: :desc).limit(100) if kind == Player.ranking_kinds[:avg_rating]
 
-    Player.order(total_game_count: :desc).limit(100) if kind == Player.ranking_kinds[:games] # default is :games
+      Player.order(total_game_count: :desc).limit(100) if kind == Player.ranking_kinds[:games] # default is :games
+    else
+      year_player = Player.clone
+      year_player.table_name = "#{year}_players"
+      return year_player.order(total_win_count: :desc).limit(100) if kind == Player.ranking_kinds[:win]
+      return year_player.order(total_draw_count: :desc).limit(100) if kind == Player.ranking_kinds[:draw]
+      return year_player.order(total_opponent_rating_average: :desc).limit(100) if kind == Player.ranking_kinds[:avg_rating]
+
+      year_player.order(total_game_count: :desc).limit(100) if kind == Player.ranking_kinds[:games] # default is :games
+    end
   end
 
   def ranking_value(kind)

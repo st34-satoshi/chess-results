@@ -7,7 +7,8 @@ class PlayersController < ApplicationController
 
   def index
     @kind = Player.valid_ranking_kind(params[:kind])
-    @players = Player.ranking(@kind)
+    @year = PlayerYear.valid_year(params[:year])
+    @players = Player.ranking(@kind, @year)
   end
 
   def show

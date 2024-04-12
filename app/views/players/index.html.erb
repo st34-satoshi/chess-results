@@ -18,8 +18,8 @@
 <div class="mt-3 mb-3">
   <%= form_with model: @search_parameter, url: "/players", method: :get, local: true, skip_enforcing_utf8: true, html: { class: "", id: "rankingForm" } do |form| %>
     <div class="mb-3 align-middle">
-        <%= form.select :year, ["すべて"] + PlayerYear.years, {}, {class: "align-middle"} %>
-        <%= form.submit "Update", name: nil, class: "btn btn-outline-primary ms-1 btn-sm" %>
+        <%= form.select :year, ["すべて"] + PlayerYear.years, {selected: PlayerYear.selected_year(@year)}, {class: "align-middle"} %>
+        <%= form.submit "更新", name: nil, class: "btn btn-outline-primary ms-1 btn-sm" %>
     </div>
 
     <%= form.hidden_field :kind, value: @kind, id: "kindField" %>
