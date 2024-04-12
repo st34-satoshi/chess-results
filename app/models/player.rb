@@ -19,15 +19,15 @@ class Player < ApplicationRecord
   def self.ranking(kind)
     return Player.order(total_win_count: :desc).limit(100) if kind == Player::ranking_kinds[:win]
     return Player.order(total_draw_count: :desc).limit(100) if kind == Player::ranking_kinds[:draw]
-    return Player.order(total_opponent_rating_average: :desc).limit(100) if kind == Player::ranking_kinds[:rating]
+    return Player.order(total_opponent_rating_average: :desc).limit(100) if kind == Player::ranking_kinds[:avg_rating]
     Player.order(total_game_count: :desc).limit(100) if kind == Player::ranking_kinds[:games] # default is :games
   end
 
   def ranking_value(kind)
-    return total_game_count if kind == "games"
-    return total_win_count if kind == "win"
-    return total_draw_count if kind == "draw"
-    return total_opponent_rating_average.round(1) if kind == "rating"
+    return total_game_count if kind == Player::ranking_kinds[:games]
+    return total_win_count if kind == Player::ranking_kinds[:win]
+    return total_draw_count if kind == Player::ranking_kinds[:draw]
+    return total_opponent_rating_average.round(1) if kind == Player::ranking_kinds[:avg_rating]
     ""
   end
 
