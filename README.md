@@ -18,6 +18,14 @@
 - `docker compose exec web rake database:create_player_stats`: プレイヤーごとの統計情報を保存する
 - `docker compose exec web rake database:create_year_player_ranking`: 年毎のプレイヤーのランキングテーブルを作成する(10分かかる...)
 
+### pry
+1. set `binding.pry`
+1. check container id: `docker ps`
+1. docker attach container_id
+1. open browser
+1. `exit`
+1. Ctrl + q
+
 ### PR作成
 - `git clone git@github.com:st34-satoshi/chess-results.git`
 - `cd chess-results`

@@ -53,6 +53,7 @@ end
 group :development do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
+  gem 'pry-rails'
   gem 'rubocop', require: false
   gem 'web-console'
 end
