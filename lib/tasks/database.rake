@@ -18,6 +18,7 @@ namespace :database do
 
   desc 'プレイヤーごとの統計情報を計算する'
   task create_player_stats: :environment do
+    # TODO: clean use player year class
     Player.all.each do |player|
       Rails.logger.info "start #{player.name_jp}"
       total_game_count = player.games.size
@@ -55,14 +56,15 @@ namespace :database do
 
   desc '年ごとにプレイヤーのランキングを保存する'
   task create_year_player_ranking: :environment do
-    puts 'start year player ranking'
+    Rails.logger.info 'start year player ranking'
     oldest_year = Game.order(:start_at).first.start_at.year
     latest_year = Game.order(:start_at).last.start_at.year
     (oldest_year..latest_year).each do |y|
-      puts y
+      Rails.logger.info y
       PlayerYear.create_player_table(y)
+      PlayerYear.update_players(y)
     end
-    puts 'finish year player ranking'
+    Rails.logger.info 'finish year player ranking'
   end
 end
 

@@ -14,6 +14,30 @@ class Game < ApplicationRecord
     errors.add(:white_point, 'not the valid number, 0, 0.5 or 1')
   end
 
+  def self.games_during(player, from_at, until_at)
+    Game.where(white_id: player.id).or(Game.where(black_id: player.id)).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+  end
+
+  def self.win_games_during(player, from_at, until_at)
+    Game.where(white_id: player.id).where(white_point: 1).or(Game.where(black_id: player.id).where(white_point: 0)).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+  end
+
+  def self.draw_games_during(player, from_at, until_at)
+    Game.where(white_id: player.id).or(Game.where(black_id: player.id)).where(white_point: 0).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+  end
+
+  def self.loss_games_during(player, from_at, until_at)
+    Game.where(white_id: player.id).where(white_point: 0).or(Game.where(black_id: player.id).where(white_point: 1)).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+  end
+
+  def self.white_games_during(player, from_at, until_at)
+    Game.where(white_id: player.id).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+  end
+
+  def self.black_games_during(player, from_at, until_at)
+    Game.where(black_id: player.id).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+  end
+
   def self.search(param)
     condition = ''
     # rubocop:disable Layout/LineLength
