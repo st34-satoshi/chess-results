@@ -2,14 +2,15 @@
 
 require 'csv'
 
+# rubocop:disable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize, Layout/LineLength
 namespace :database do
   desc 'csvファイルから対局結果をデータベースに保存する'
   task create_data: :environment do
     include CreateData
-    directories = get_directories
+    directories = csv_directories
     directories.each do |directory|
-      csv_files = get_csv_files(directory)
-      csv_files.each do |file|
+      files = csv_files(directory)
+      files.each do |file|
         read_data(file)
       end
     end
@@ -17,33 +18,37 @@ namespace :database do
 
   desc 'プレイヤーごとの統計情報を計算する'
   task create_player_stats: :environment do
-  Player.all.each do |player|
+    Player.all.each do |player|
       Rails.logger.info "start #{player.name_jp}"
       total_game_count = player.games.size
-      total_win_count = player.win_games_of("RP").size + player.win_games_of("ST").size 
-      total_draw_count = player.draw_games_of("RP").size + player.draw_games_of("ST").size 
-      total_loss_count = player.loss_games_of("RP").size + player.loss_games_of("ST").size 
+      total_win_count = player.win_games_of('RP').size + player.win_games_of('ST').size
+      total_draw_count = player.draw_games_of('RP').size + player.draw_games_of('ST').size
+      total_loss_count = player.loss_games_of('RP').size + player.loss_games_of('ST').size
       opponent_rating_sum = 0
       opponent_rating_count = 0
       player.white_games.each do |game|
         next if game.black_rating < 400
+
         opponent_rating_sum += game.black_rating
         opponent_rating_count += 1
       end
       player.black_games.each do |game|
         next if game.white_rating < 400
+
         opponent_rating_sum += game.white_rating
         opponent_rating_count += 1
       end
       total_opponent_rating_average = 0.0
-      total_opponent_rating_average = opponent_rating_sum / opponent_rating_count.to_f if opponent_rating_count > 0
-      
+      if opponent_rating_count.positive?
+        total_opponent_rating_average = opponent_rating_sum / opponent_rating_count.to_f
+      end
+
       player.update(
-        total_game_count: total_game_count,
-        total_win_count: total_win_count,
-        total_draw_count: total_draw_count,
-        total_loss_count: total_loss_count,
-        total_opponent_rating_average: total_opponent_rating_average,
+        total_game_count:,
+        total_win_count:,
+        total_draw_count:,
+        total_loss_count:,
+        total_opponent_rating_average:
       )
     end
   end
@@ -91,7 +96,7 @@ module CreateData
     end
   end
 
-  def get_directories
+  def csv_directories
     directory_pathes = []
     directory_path = 'data/'
     entries = Dir.entries(directory_path)
@@ -103,7 +108,7 @@ module CreateData
     directory_pathes
   end
 
-  def get_csv_files(directory)
+  def csv_files(directory)
     file_pathes = []
     entries = Dir.entries(directory)
     entries.each do |entry|
@@ -114,3 +119,4 @@ module CreateData
     file_pathes
   end
 end
+# rubocop:enable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize, Layout/LineLength

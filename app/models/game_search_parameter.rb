@@ -31,17 +31,14 @@ class GameSearchParameter
   end
 
   def valid_name?
-    if name.present? && name.match(/[!@#$%^&*()\=+{};:'",.<>\/?\\|~`]/).present?
-      return false
-    end
+    return false if name.present? && name.match(%r{[!@#$%^&*()\=+{};:'",.<>/?\\|~`]}).present?
+
     true
   end
 
   def valid_tournament?
-    if tournament.present? && tournament.match(/[!@#$%^&*()\=+{};:'",.<>\/?\\|~`]/).present?
-      return false
-    end
+    return false if tournament.present? && tournament.match(%r{[!@#$%^&*()\=+{};:'",.<>/?\\|~`]}).present?
+
     true
   end
-
 end

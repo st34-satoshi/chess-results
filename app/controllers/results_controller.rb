@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ResultsController < ApplicationController
-  before_action ->{
-    set_header_page("games")
+  before_action lambda  {
+    set_header_page('games')
   }
 
   def index
