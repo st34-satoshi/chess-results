@@ -2,7 +2,7 @@
 
 require 'csv'
 
-# rubocop:disable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize, Layout/LineLength
+# rubocop:disable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize
 namespace :database do
   desc 'csvファイルから対局結果をデータベースに保存する'
   task create_data: :environment do
@@ -51,6 +51,18 @@ namespace :database do
         total_opponent_rating_average:
       )
     end
+  end
+
+  desc '年ごとにプレイヤーのランキングを保存する'
+  task create_year_player_ranking: :environment do
+    puts 'start year player ranking'
+    oldest_year = Game.order(:start_at).first.start_at.year
+    latest_year = Game.order(:start_at).last.start_at.year
+    (oldest_year..latest_year).each do |y|
+      puts y
+      PlayerYear.create_player_table(y)
+    end
+    puts 'finish year player ranking'
   end
 end
 
@@ -119,4 +131,4 @@ module CreateData
     file_pathes
   end
 end
-# rubocop:enable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize, Layout/LineLength
+# rubocop:enable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize

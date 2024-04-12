@@ -16,6 +16,7 @@
 
 - `docker compose exec web rake database:create_data`: 対局結果を保存する(15分かかる...)
 - `docker compose exec web rake database:create_player_stats`: プレイヤーごとの統計情報を保存する
+- `docker compose exec web rake database:create_year_player_ranking`: 年毎のプレイヤーのランキングテーブルを作成する
 
 ### PR作成
 - `git clone git@github.com:st34-satoshi/chess-results.git`
