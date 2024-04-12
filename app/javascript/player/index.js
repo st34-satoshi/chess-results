@@ -5,7 +5,7 @@ function setSubmit(){
   const kindField = document.getElementById('kindField');
   form.addEventListener("submit", (event) => {
     // set kind
-    let kind = "games";
+    let kind = "";
     const commitId = event.submitter.id
     if(commitId === 'gamesSubmit'){
       kind = 'games'
@@ -16,7 +16,9 @@ function setSubmit(){
     }else if(commitId === 'avgRatingSubmit'){
       kind = 'avg_rating'
     }
-    kindField.value = kind;
+    if(kind !== ''){
+      kindField.value = kind;
+    }
   })
 
 }
