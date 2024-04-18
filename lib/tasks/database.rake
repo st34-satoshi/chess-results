@@ -16,6 +16,13 @@ namespace :database do
     end
   end
 
+  desc '特定のcsvファイルから対局結果をデータベースに保存する'
+  task :create_from_a_file, [:file_path] => :environment do |task, args|
+    include CreateData
+    puts "create from a file"
+    read_data(args.file_path)
+  end
+
   desc 'プレイヤーごとの統計情報を計算する'
   task create_player_stats: :environment do
     # TODO: clean use player year class
