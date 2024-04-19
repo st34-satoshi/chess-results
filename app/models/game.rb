@@ -45,6 +45,16 @@ class Game < ApplicationRecord
       condition += "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%' OR black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')"
     end
     # rubocop:enable Layout/LineLength
+    if param.time_type == "スタンダード"
+      condition += ' AND ' if condition.present?
+      condition += "(games.time_type = 'ST')"
+    end
+    if param.time_type == "ラピッド"
+      condition += ' AND ' if condition.present?
+      condition += "(games.time_type = 'RP')"
+    end
+
+    # tournament
     if param.valid_tournament?
       condition += ' AND ' if condition.present?
       condition += "(tournaments.name LIKE '%#{param.tournament}%')"
