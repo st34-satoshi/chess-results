@@ -16,7 +16,12 @@
       <hr>
       <div class="p-3 pt-1">
         <div class="form-group">
-          <%= form.label :name, "プレーヤー名", class: "label-width" %>
+          <%= form.label :name, class: "label-width" do %>
+            <div class="d-flex align-items-center">
+            プレーヤー名
+            <%= render "player_name_modal", time_type: "RP" %>
+            </div>
+          <% end %>
           <%= form.text_field :name, size: 20 %>
         </div>
         <hr>

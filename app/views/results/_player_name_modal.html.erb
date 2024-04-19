@@ -1,0 +1,33 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn p-0 ms-1" data-bs-toggle="modal" data-bs-target="#playerNameModal">
+  <%= image_tag('/icons/circle-question-regular.svg', {:size => '20x20'}) %>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="playerNameModal" tabindex="-1" aria-labelledby="playerNameModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="playerNameModalLabel">プレーヤー名入力例</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          プレーヤー名は姓・名・姓+名のいずれかで入力してください。日本チェス連盟に登録されている日本語名かアルファベットを入力してください。
+        </div>
+        <div class="mt-3">
+          <div><input size="20" type="text" value="田中"></div>
+          <div><input size="20" type="text" value="智"></div>
+          <div><input size="20" type="text" value="田中 智"></div>
+          <div><input size="20" type="text" value="Tanaka"></div>
+          <div><input size="20" type="text" value="Satoshi"></div>
+          <div><input size="20" type="text" value="Tanaka Satoshi"></div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
