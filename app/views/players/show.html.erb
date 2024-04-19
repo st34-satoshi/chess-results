@@ -18,17 +18,26 @@
 <div>
   日本チェス連盟に報告があった2019年以降の対局結果を元に統計情報を出しています。
 </div>
+<%= link_to "このプレーヤーの対局一覧", results_path(game_search_parameter: {name: @player.name_jp}) %>
 
-<h2 class="mt-3">
+<div class="mt-3">
+  <h2>
   <%= image_tag('/icons/square-poll.svg', {:size => '25x25'}) %>
   スタンダード
-</h2>
+  </h2>
+</div>
+<div class="mt-1 mb-1">
+  <%= link_to "スタンダードの対局一覧", results_path(game_search_parameter: {name: @player.name_jp, time_type: "スタンダード"}) %>
+</div>
 <%= render "stats_doughnut", time_type: "ST" %>
 
-<h2 class="mt-3">
+<h2 class="mt-5">
   <%= image_tag('/icons/square-poll.svg', {:size => '25x25'}) %>
   ラピッド
 </h2>
+<div class="mt-1 mb-1">
+  <%= link_to "ラピッドの対局一覧", results_path(game_search_parameter: {name: @player.name_jp, time_type: "ラピッド"}) %>
+</div>
 <%= render "stats_doughnut", time_type: "RP" %>
 
 <div class="mb-5"></div>
