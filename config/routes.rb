@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   resources :results, only: %i[index]
   resources :players, only: %i[index show]
+
+  get 'health_error' => 'home#health_error'
+  get 'health' => 'home#health'
 end
