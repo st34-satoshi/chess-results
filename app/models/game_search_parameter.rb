@@ -20,11 +20,11 @@ class GameSearchParameter
     ok = true
     Rails.logger.info name
     unless valid_name?
-      errors.add(:base, 'プレイヤー名に記号などの文字は使えません。日本語と英数字だけを入力してください。')
+      errors.add(:base, 'プレーヤー名に記号などの文字は使えません。日本語か英数字だけを入力してください。')
       ok = false
     end
     unless valid_tournament?
-      errors.add(:base, '大会名に記号などの文字は使えません。日本語と英数字だけを入力してください。')
+      errors.add(:base, '大会名に記号などの文字は使えません。日本語か英数字だけを入力してください。')
       ok = false
     end
     ok

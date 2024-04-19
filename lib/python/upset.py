@@ -53,7 +53,7 @@ def to_hash(diffs):
     return data
 
 def write_csv(diff_hash):
-    head = ["レーティング差", "レーティングが高いプレイヤーの勝ち", "引分", "レーティングが高いプレイヤーの負け"]
+    head = ["レーティング差", "レーティングが高いプレーヤーの勝ち", "引分", "レーティングが高いプレーヤーの負け"]
     with open('diff.csv', "w") as f:
         writer = csv.writer(f, lineterminator='\n')  # set new line code
         writer.writerow(head)
@@ -78,7 +78,7 @@ def graph(diff_hash):
     plt.bar(x_data, avg_points, width=50)
     expect_points = [0.58, 0.71, 0.81, 0.89, 0.94, 0.97, 0.99]
     plt.plot(x_data, expect_points, "-or", label="期待値")
-    plt.title('レーティングが高いプレイヤーが獲得したポイントの平均')
+    plt.title('レーティングが高いプレーヤーが獲得したポイントの平均')
     plt.xlabel('レーティング差')
 
     plt.legend()

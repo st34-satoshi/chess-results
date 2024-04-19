@@ -23,7 +23,7 @@ namespace :database do
     read_data(args.file_path)
   end
 
-  desc 'プレイヤーごとの統計情報を計算する'
+  desc 'プレーヤーごとの統計情報を計算する'
   task create_player_stats: :environment do
     # TODO: clean use player year class
     Player.all.each do |player|
@@ -61,7 +61,7 @@ namespace :database do
     end
   end
 
-  desc '年ごとにプレイヤーのランキングを保存する'
+  desc '年ごとにプレーヤーのランキングを保存する'
   task create_year_player_ranking: :environment do
     Rails.logger.info 'start year player ranking'
     oldest_year = Game.order(:start_at).first.start_at.year

@@ -17,11 +17,11 @@
     <% if content_for?(:og_head) %>
       <%= yield(:og_head) %>
     <% else %>
-      <meta name="description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレイヤー名や大会名から対局の検索ができます。">
+      <meta name="description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレーヤー名や大会名から対局の検索ができます。">
       <meta property="og:title" content="チェス対局結果まとめ">
       <meta property="og:type" content="website">
       <meta property="og:url" content="<%= root_url %>">
-      <meta property="og:description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレイヤー名や大会名から対局の検索ができます。">
+      <meta property="og:description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレーヤー名や大会名から対局の検索ができます。">
       <meta property="og:image" content="<%= root_url %>icon-120x120.png">
     <% end %>
     <%= favicon_link_tag('/icon-48x48.png', {:type => 'image/png'}) %>

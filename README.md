@@ -15,8 +15,8 @@
 対局結果が入ったcsvファイルを用意する
 
 - `docker compose exec web rake database:create_data`: 対局結果を保存する(15分かかる...)
-- `docker compose exec web rake database:create_player_stats`: プレイヤーごとの統計情報を保存する
-- `docker compose exec web rake database:create_year_player_ranking`: 年毎のプレイヤーのランキングテーブルを作成する(10分かかる...)
+- `docker compose exec web rake database:create_player_stats`: プレーヤーごとの統計情報を保存する
+- `docker compose exec web rake database:create_year_player_ranking`: 年毎のプレーヤーのランキングテーブルを作成する(10分かかる...)
 - `docker compose exec web rake 'database:create_from_a_file[data/2024-ST/2024-01-01.csv]'`: ファイルを指定して対局結果を保存する
 
 ### pry
