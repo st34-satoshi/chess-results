@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html class="h-100">
   <head prefix="og: https://ogp.me/ns#">
-    <% if Rails.env.production? %>
-      <!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-PY0B4S2HM9"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      
-        gtag('config', 'G-PY0B4S2HM9');
-      </script>
-    <% end %>
-
-    <title>チェス対局結果まとめサイト</title>
+    <title>日本チェス連盟公式戦データベース</title>
     <% if content_for?(:og_head) %>
       <%= yield(:og_head) %>
     <% else %>
-      <meta name="description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレーヤー名を指定して対局の検索ができます。">
-      <meta property="og:title" content="チェス対局結果まとめ">
+      <meta name="description" content="日本チェス連盟公式戦データベース。チェスの公式戦の対局を調べることができます。プレーヤー名を指定して対局の検索ができます。">
+      <meta property="og:title" content="日本チェス連盟公式戦データベース">
       <meta property="og:type" content="website">
       <meta property="og:url" content="<%= root_url %>">
-      <meta property="og:description" content="チェス対局結果まとめサイト。チェスの公式戦の対局を調べることができます。プレーヤー名を指定して対局の検索ができます。">
+      <meta property="og:description" content="日本チェス連盟公式戦データベース。チェスの公式戦の対局を調べることができます。プレーヤー名を指定して対局の検索ができます。">
       <meta property="og:image" content="<%= root_url %>icon-120x120.png">
     <% end %>
     <%= favicon_link_tag('/icon-48x48.png', {:type => 'image/png'}) %>

@@ -3,7 +3,7 @@
 <% end %>
 <% content_for :og_head do %>
   <meta name="description" content="<%= @player.name_jp %>のチェス対局結果統計情報。手番ごとの勝率を表示。チェスの公式戦の対局を調べることができます。プレーヤー名を指定して対局の検索ができます。">
-  <meta property="og:title" content="<%= @player.name_jp %> | チェス対局結果まとめ">
+  <meta property="og:title" content="<%= @player.name_jp %> | 日本チェス連盟公式戦データベース">
   <meta property="og:type" content="website">
   <meta property="og:url" content="<%= player_url(id: @player.ncs_id) %>">
   <meta property="og:description" content="<%= @player.name_jp %>のチェス対局結果統計情報。手番ごとの勝率を表示。チェスの公式戦の対局を調べることができます。プレーヤー名を指定して対局の検索ができます。">

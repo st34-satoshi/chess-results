@@ -1,5 +1,11 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-md">
+    <a class="navbar-brand" href="#">
+    <%= link_to root_path, { class: "navbar-brand"} do %>
+      <%= image_tag('/icon-120x120.png', {:size => '30x30', class: "d-inline-block align-text-top"}) %>
+      日本チェス連盟公式戦データベース
+    <% end %>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
