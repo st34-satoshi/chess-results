@@ -37,6 +37,7 @@
 /data/*/*.csv
 /data/*/*.numbers
 /data/*/*.xlsx
+/data/*/*/*.xlsx
 /lib/python/venv-results
 
 .DS_Store
