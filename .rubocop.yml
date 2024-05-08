@@ -24,3 +24,6 @@ Metrics/CyclomaticComplexity:
 
 Metrics/BlockLength:
   Max: 30
+
+Layout/LineLength:
+  Max: 140

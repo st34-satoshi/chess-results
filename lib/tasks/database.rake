@@ -17,9 +17,9 @@ namespace :database do
   end
 
   desc '特定のcsvファイルから対局結果をデータベースに保存する'
-  task :create_from_a_file, [:file_path] => :environment do |task, args|
+  task :create_from_a_file, [:file_path] => :environment do |_task, args|
     include CreateData
-    puts "create from a file"
+    puts 'create from a file'
     read_data(args.file_path)
   end
 
@@ -47,9 +47,7 @@ namespace :database do
         opponent_rating_count += 1
       end
       total_opponent_rating_average = 0.0
-      if opponent_rating_count.positive?
-        total_opponent_rating_average = opponent_rating_sum / opponent_rating_count.to_f
-      end
+      total_opponent_rating_average = opponent_rating_sum / opponent_rating_count.to_f if opponent_rating_count.positive?
 
       player.update(
         total_game_count:,

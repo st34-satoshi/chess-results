@@ -12,7 +12,7 @@ class GameSearchParameter
   attribute :tournament, :string, default: nil
   attribute :date_from, :date, default: nil
   attribute :date_until, :date, default: nil
-  attribute :time_type, :string, default: "すべて"
+  attribute :time_type, :string, default: 'すべて'
 
   def initialize(params)
     super(params.permit(:name, :opponent, :ncs_id, :tournament, :date_from, :date_until, :time_type))

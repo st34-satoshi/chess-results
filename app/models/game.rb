@@ -15,57 +15,71 @@ class Game < ApplicationRecord
   end
 
   def self.games_during(player, from_at, until_at)
-    Game.where(white_id: player.id).or(Game.where(black_id: player.id)).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+    Game.where(white_id: player.id).or(Game.where(black_id: player.id)).where('start_at >= ?', from_at).where(
+      'start_at <= ?', until_at
+    )
   end
 
   def self.win_games_during(player, from_at, until_at)
-    Game.where(white_id: player.id).where(white_point: 1).or(Game.where(black_id: player.id).where(white_point: 0)).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+    Game.where(white_id: player.id)
+        .where(white_point: 1)
+        .or(Game.where(black_id: player.id).where(white_point: 0))
+        .where('start_at >= ?', from_at)
+        .where('start_at <= ?', until_at)
   end
 
   def self.draw_games_during(player, from_at, until_at)
-    Game.where(white_id: player.id).or(Game.where(black_id: player.id)).where(white_point: 0).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+    Game.where(white_id: player.id).or(Game.where(black_id: player.id)).where(white_point: 0).where('start_at >= ?', from_at).where(
+      'start_at <= ?', until_at
+    )
   end
 
   def self.loss_games_during(player, from_at, until_at)
-    Game.where(white_id: player.id).where(white_point: 0).or(Game.where(black_id: player.id).where(white_point: 1)).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+    Game.where(white_id: player.id)
+        .where(white_point: 0)
+        .or(Game.where(black_id: player.id).where(white_point: 1))
+        .where('start_at >= ?', from_at)
+        .where('start_at <= ?', until_at)
   end
 
   def self.white_games_during(player, from_at, until_at)
-    Game.where(white_id: player.id).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+    Game.where(white_id: player.id).where('start_at >= ?', from_at).where('start_at <= ?', until_at)
   end
 
   def self.black_games_during(player, from_at, until_at)
-    Game.where(black_id: player.id).where("start_at >= ?", from_at).where("start_at <= ?", until_at)
+    Game.where(black_id: player.id).where('start_at >= ?', from_at).where('start_at <= ?', until_at)
   end
 
+  # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/AbcSize
   def self.search(param)
     condition = ''
     if param.name.present? && param.valid_name?(param.name) && param.opponent.present? && param.valid_name?(param.opponent)
-      condition = "(" \
-        "(" \
-          "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%')" \
-          "AND" \
-          "(black.name_en LIKE '%#{param.opponent}%' OR black.name_jp LIKE '%#{param.opponent}%')" \
-        ")" \
-        "OR" \
-        "(" \
-          "(white.name_en LIKE '%#{param.opponent}%' OR white.name_jp LIKE '%#{param.opponent}%')" \
-          "AND" \
-          "(black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')" \
-        ")" \
-        ")"
+      condition = '(' \
+                  '(' \
+                  "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%')" \
+                  'AND' \
+                  "(black.name_en LIKE '%#{param.opponent}%' OR black.name_jp LIKE '%#{param.opponent}%')" \
+                  ')' \
+                  'OR' \
+                  '(' \
+                  "(white.name_en LIKE '%#{param.opponent}%' OR white.name_jp LIKE '%#{param.opponent}%')" \
+                  'AND' \
+                  "(black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')" \
+                  ')' \
+                  ')'
     elsif param.name.present? && param.valid_name?(param.name)
-      condition += "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%' OR black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')"
+      condition = "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%' " \
+                  "OR black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')"
     elsif param.opponent.present? && param.valid_name?(param.opponent)
-      condition += ' AND ' if condition.present?
-      condition += "(white.name_en LIKE '%#{param.opponent}%' OR white.name_jp LIKE '%#{param.opponent}%' OR black.name_en LIKE '%#{param.opponent}%' OR black.name_jp LIKE '%#{param.opponent}%')"
+      condition = "(white.name_en LIKE '%#{param.opponent}%' OR white.name_jp LIKE '%#{param.opponent}%'  " \
+                  "OR black.name_en LIKE '%#{param.opponent}%' OR black.name_jp LIKE '%#{param.opponent}%')"
     end
 
-    if param.time_type == "スタンダード"
+    if param.time_type == 'スタンダード'
       condition += ' AND ' if condition.present?
       condition += "(games.time_type = 'ST')"
     end
-    if param.time_type == "ラピッド"
+    if param.time_type == 'ラピッド'
       condition += ' AND ' if condition.present?
       condition += "(games.time_type = 'RP')"
     end
@@ -98,4 +112,5 @@ class Game < ApplicationRecord
       )
       .order(date: :desc)
   end
+  # rubocop:enable Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/AbcSize
 end

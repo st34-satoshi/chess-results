@@ -4,11 +4,10 @@ class PlayerYear < ApplicationRecord
   def self.selected_year(year)
     year = year.to_i
     if PlayerYear.find_by(created_year: year).nil?
-      year = "すべて" 
+      'すべて'
     else
-      year = "#{year}年"
+      "#{year}年"
     end
-    year
   end
 
   def self.valid_year(year)
@@ -19,7 +18,7 @@ class PlayerYear < ApplicationRecord
 
   def self.years
     years = []
-    PlayerYear.order(created_year: "DESC").each do |y|
+    PlayerYear.order(created_year: 'DESC').each do |y|
       years.push "#{y.created_year}年"
     end
     years
@@ -52,6 +51,7 @@ class PlayerYear < ApplicationRecord
     PlayerYear.create(created_year: year)
   end
 
+  # rubocop:disable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize
   def self.update_players(year)
     year_player = Player.clone
     year_player.table_name = "#{year}_players"
@@ -80,9 +80,7 @@ class PlayerYear < ApplicationRecord
         opponent_rating_count += 1
       end
       total_opponent_rating_average = 0.0
-      if opponent_rating_count.positive?
-        total_opponent_rating_average = opponent_rating_sum / opponent_rating_count.to_f
-      end
+      total_opponent_rating_average = opponent_rating_sum / opponent_rating_count.to_f if opponent_rating_count.positive?
 
       # create or update
       p = year_player.find_by(ncs_id: player.ncs_id)
@@ -108,4 +106,5 @@ class PlayerYear < ApplicationRecord
       end
     end
   end
+  # rubocop:enable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize
 end

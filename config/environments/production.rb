@@ -54,7 +54,7 @@ Rails.application.configure do
   config.force_ssl = true
 
   # Log
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
   config.logger = Logger.new('log/production.log', 'monthly')
 
   # Prepend all log lines with the following tags.
