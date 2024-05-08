@@ -40,11 +40,27 @@ class Game < ApplicationRecord
 
   def self.search(param)
     condition = ''
-    # rubocop:disable Layout/LineLength
-    if param.valid_name?
+    if param.name.present? && param.valid_name?(param.name) && param.opponent.present? && param.valid_name?(param.opponent)
+      condition = "(" \
+        "(" \
+          "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%')" \
+          "AND" \
+          "(black.name_en LIKE '%#{param.opponent}%' OR black.name_jp LIKE '%#{param.opponent}%')" \
+        ")" \
+        "OR" \
+        "(" \
+          "(white.name_en LIKE '%#{param.opponent}%' OR white.name_jp LIKE '%#{param.opponent}%')" \
+          "AND" \
+          "(black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')" \
+        ")" \
+        ")"
+    elsif param.name.present? && param.valid_name?(param.name)
       condition += "(white.name_en LIKE '%#{param.name}%' OR white.name_jp LIKE '%#{param.name}%' OR black.name_en LIKE '%#{param.name}%' OR black.name_jp LIKE '%#{param.name}%')"
+    elsif param.opponent.present? && param.valid_name?(param.opponent)
+      condition += ' AND ' if condition.present?
+      condition += "(white.name_en LIKE '%#{param.opponent}%' OR white.name_jp LIKE '%#{param.opponent}%' OR black.name_en LIKE '%#{param.opponent}%' OR black.name_jp LIKE '%#{param.opponent}%')"
     end
-    # rubocop:enable Layout/LineLength
+
     if param.time_type == "スタンダード"
       condition += ' AND ' if condition.present?
       condition += "(games.time_type = 'ST')"

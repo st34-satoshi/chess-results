@@ -19,10 +19,20 @@
           <%= form.label :name, class: "label-width" do %>
             <div class="d-flex align-items-center">
             プレーヤー名
-            <%= render "player_name_modal", time_type: "RP" %>
+            <%= render "player_name_modal" %>
             </div>
           <% end %>
           <%= form.text_field :name, size: 20 %>
+        </div>
+        <hr>
+        <div class="form-group">
+          <%= form.label :opponent, class: "label-width" do %>
+            <div class="d-flex align-items-center">
+            対戦相手名
+            <%= render "player_name_modal" %>
+            </div>
+          <% end %>
+          <%= form.text_field :opponent, size: 20 %>
         </div>
         <hr>
         <div class="form-group">
