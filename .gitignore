@@ -39,5 +39,6 @@
 /data/*/*.xlsx
 /data/*/*/*.xlsx
 /lib/python/venv-results
+!/data/ex/2024-01-01.csv
 
 .DS_Store
