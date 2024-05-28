@@ -2,7 +2,7 @@
 日本チェス連盟公式戦の記録
 
 ## Webページ
-[Chess Results](https://results.japanchess.org)
+[日本チェス連盟公式戦データベース](https://results.japanchess.org)
 
 ## 開発
 - `docker compose build`
