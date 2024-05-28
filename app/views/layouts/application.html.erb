@@ -30,10 +30,12 @@
     <%= yield(:additional_scripts) %>
 
     <%# javascript sentry %>
-    <script
-      src="https://js.sentry-cdn.com/160960de6cc247c4f98bd1270e206935.min.js"
-      crossorigin="anonymous"
-    ></script>
+    <% if Rails.env.production? %>
+      <script
+        src="https://js.sentry-cdn.com/160960de6cc247c4f98bd1270e206935.min.js"
+        crossorigin="anonymous"
+      ></script>
+    <% end %>
 
     <% if Rails.env.production? %>
       <!-- Google tag (gtag.js) -->
