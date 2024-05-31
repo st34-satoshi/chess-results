@@ -1,3 +1,8 @@
 White Point,White ID,White Name,White Kanji,White K,White Rating,Black ID,Black Name,Black Kanji,Black K,Black Rating,Date,Time,Source,PGN Moves
+1,N01234567,Tanaka Satoshi,田中 智,20,1600,N01234568,Yamada Taro,山田 太郎,20,1300,2024-12-01,ST,チェスクラブ,1. e4 c6 2. Nf3 d5
 1,N01234567,Tanaka Satoshi,田中 智,20,1600,N01234568,Yamada Taro,山田 太郎,20,1300,2023-12-01,ST,チェスクラブ,1. e4 c6 2. Nf3 d5
 0.5,N01234567,Tanaka Satoshi,田中 智,20,1600,N01234569,Sato Ken,佐藤 健,20,1900,2023-12-01,ST,チェスクラブ,
+0.5,N01234567,Tanaka Satoshi,田中 智,20,1620,N01234569,Sato Ken,佐藤 健,20,1950,2022-12-01,ST,チェスクラブ,
+0,N01234567,Tanaka Satoshi,田中 智,20,1620,N01234569,Sato Ken,佐藤 健,20,1950,2021-12-01,ST,チェスクラブ,
+0.5,N01234567,Tanaka Satoshi,田中 智,20,1620,N01234569,Sato Ken,佐藤 健,20,1950,2020-12-01,ST,チェスクラブ,
+0.5,N01234567,Tanaka Satoshi,田中 智,20,1620,N01234569,Sato Ken,佐藤 健,20,1950,2019-12-01,ST,チェスクラブ,

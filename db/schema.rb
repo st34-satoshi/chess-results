@@ -11,6 +11,90 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_05_30_035237) do
+  create_table "2019_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ncs_id", null: false
+    t.string "name_en"
+    t.string "name_jp"
+    t.integer "total_game_count"
+    t.integer "total_win_count"
+    t.integer "total_loss_count"
+    t.integer "total_draw_count"
+    t.float "total_opponent_rating_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ncs_id"], name: "index_2019_players_on_ncs_id", unique: true
+  end
+
+  create_table "2020_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ncs_id", null: false
+    t.string "name_en"
+    t.string "name_jp"
+    t.integer "total_game_count"
+    t.integer "total_win_count"
+    t.integer "total_loss_count"
+    t.integer "total_draw_count"
+    t.float "total_opponent_rating_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ncs_id"], name: "index_2020_players_on_ncs_id", unique: true
+  end
+
+  create_table "2021_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ncs_id", null: false
+    t.string "name_en"
+    t.string "name_jp"
+    t.integer "total_game_count"
+    t.integer "total_win_count"
+    t.integer "total_loss_count"
+    t.integer "total_draw_count"
+    t.float "total_opponent_rating_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ncs_id"], name: "index_2021_players_on_ncs_id", unique: true
+  end
+
+  create_table "2022_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ncs_id", null: false
+    t.string "name_en"
+    t.string "name_jp"
+    t.integer "total_game_count"
+    t.integer "total_win_count"
+    t.integer "total_loss_count"
+    t.integer "total_draw_count"
+    t.float "total_opponent_rating_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ncs_id"], name: "index_2022_players_on_ncs_id", unique: true
+  end
+
+  create_table "2023_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ncs_id", null: false
+    t.string "name_en"
+    t.string "name_jp"
+    t.integer "total_game_count"
+    t.integer "total_win_count"
+    t.integer "total_loss_count"
+    t.integer "total_draw_count"
+    t.float "total_opponent_rating_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ncs_id"], name: "index_2023_players_on_ncs_id", unique: true
+  end
+
+  create_table "2024_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ncs_id", null: false
+    t.string "name_en"
+    t.string "name_jp"
+    t.integer "total_game_count"
+    t.integer "total_win_count"
+    t.integer "total_loss_count"
+    t.integer "total_draw_count"
+    t.float "total_opponent_rating_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ncs_id"], name: "index_2024_players_on_ncs_id", unique: true
+  end
+
   create_table "games", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "white_id"
     t.integer "white_rating", null: false
