@@ -23,6 +23,18 @@ namespace :database do
     read_data(args.file_path)
   end
 
+  desc 'csvファイルから棋譜をデータベースに保存する'
+  task add_pgn_moves: :environment do
+    include CreateData
+    directories = csv_directories
+    directories.each do |directory|
+      files = csv_files(directory)
+      files.each do |file|
+        read_pgn_data(file)
+      end
+    end
+  end
+
   desc 'プレーヤーごとの統計情報を計算する'
   task create_player_stats: :environment do
     # TODO: clean use player year class
@@ -112,6 +124,38 @@ module CreateData
         start_at:
       )
       puts g.errors.full_messages if g.errors.present?
+    end
+  end
+
+  def read_pgn_data(file)
+    # csvファイルを読み込んで png のみをデータベースに保存する
+    Rails.logger.info "read pgn: #{file}"
+    csv_data = CSV.read(file, headers: true)
+
+    csv_data.each do |row|
+      pgn_moves = row['PGN Moves']
+
+      # pgn がなければスキップ
+      next if pgn_moves.nil? || pgn_moves.empty?
+
+      white_id = row['White ID']
+      black_id = row['Black ID']
+      tournament_name = row["Source"]
+      start_at = row['Date'].to_date
+      white = Player.find_by(ncs_id: white_id)
+      black = Player.find_by(ncs_id: black_id)
+      tournament = Tournament.find_by(name: tournament_name, start_at:)
+
+      # プレイヤー, トーナメントが存在しなければスキップ
+      next if white.nil? || black.nil? || tournament_name.nil?
+
+      g = Game.find_by(white:, black:, tournament:, start_at:)
+
+      # ゲームが存在しなければスキップ
+      next if g.nil?
+
+      g.pgn_moves = pgn_moves
+      g.save
     end
   end
 
