@@ -13,6 +13,11 @@ class PlayersController < ApplicationController
 
   def show
     set_player
+    return if @player
+
+    flash[:warning] = 'プレーヤーが見つかりませんでした。'
+    redirect_to players_path
+    nil
   end
 
   private
