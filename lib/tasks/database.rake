@@ -150,7 +150,7 @@ module CreateData
 
       white_id = row['White ID']
       black_id = row['Black ID']
-      tournament_name = row["Source"]
+      tournament_name = row['Source']
       start_at = row['Date'].to_date
       white = Player.find_by(ncs_id: white_id)
       black = Player.find_by(ncs_id: black_id)
