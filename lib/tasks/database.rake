@@ -83,6 +83,16 @@ namespace :database do
     end
     Rails.logger.info 'finish year player ranking'
   end
+
+  desc '特定の年のプレーヤーランキングを保存する'
+  task :create_year_player_ranking_in, [:year] => :environment do |_task, args|
+    include CreateData
+    y = args.year.to_i
+    Rails.logger.info "start year player ranking in #{y}"
+    PlayerYear.create_player_table(y)
+    PlayerYear.update_players(y)
+    Rails.logger.info "finish year player ranking in #{y}"
+  end
 end
 
 module CreateData
@@ -140,7 +150,7 @@ module CreateData
 
       white_id = row['White ID']
       black_id = row['Black ID']
-      tournament_name = row["Source"]
+      tournament_name = row['Source']
       start_at = row['Date'].to_date
       white = Player.find_by(ncs_id: white_id)
       black = Player.find_by(ncs_id: black_id)

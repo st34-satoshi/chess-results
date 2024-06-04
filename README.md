@@ -18,7 +18,7 @@
 - `docker compose exec web rake database:create_data`: 対局結果を保存する(実データだと15分かかる...)
 - `docker compose exec web rake database:create_player_stats`: プレーヤーごとの統計情報を保存する
 - `docker compose exec web rake database:create_year_player_ranking`: 年毎のプレーヤーのランキングテーブルを作成する(実データだと10分かかる...)
-- `docker compose exec web rake database:create_year_player_ranking`
+- `docker compose exec web rake 'database:create_year_player_ranking_in[2024]'`: 指定した年のプレーヤーのランキングテーブルを作成する
 - `docker compose exec web rake database:add_pgn_moves`: すでに保存されている対局の棋譜を上書き保存する
 - `docker compose exec web rake 'database:create_from_a_file[data/2024-ST/2024-01-01.csv]'`: ファイルを指定して対局結果を保存する
 
@@ -31,13 +31,14 @@
 1. Ctrl + q
 
 ### PR作成
-- `git clone git@github.com:st34-satoshi/chess-results.git`
+- GitHubでプロジェクトをフォーク
+- `git clone git@github.com:your_name/chess-results.git`
 - `cd chess-results`
 - `git checkout -b feature/xxx`
 - some commits
 - `docker compose exec web rubocop -A` check rubocop
 - `git push origin feature/xxx`
-- create a PR
+- PRを作成する
 
 ## プロダクションデプロイ
 - config/master.keyを本番環境に用意する
