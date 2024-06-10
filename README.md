@@ -15,8 +15,8 @@
 対局結果が入ったcsvファイルを用意する
 
 - (ダミーデータを使用する場合) `mkdir data/2024-ST && mv data/ex/2024-01-01.csv data/2024-ST/2024-01-02.csv`
-- `docker compose exec web rake database:create_data`: 対局結果を保存する(実データだと15分かかる...)
-- `docker compose exec web rake database:create_player_stats`: プレーヤーごとの統計情報を保存する
+- `docker compose exec web rake database:create_data`: 対局結果を保存する(冪等性なし)(実データだと15分かかる...)
+- `docker compose exec web rake database:create_player_stats`: プレーヤーごとの統計情報を保存する(冪等性あり)
 - `docker compose exec web rake database:create_year_player_ranking`: 年毎のプレーヤーのランキングテーブルを作成する(実データだと10分かかる...)
 - `docker compose exec web rake 'database:create_year_player_ranking_in[2024]'`: 指定した年のプレーヤーのランキングテーブルを作成する
 - `docker compose exec web rake database:add_pgn_moves`: すでに保存されている対局の棋譜を上書き保存する
