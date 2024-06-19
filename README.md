@@ -20,7 +20,10 @@
 - `docker compose exec web rake database:create_year_player_ranking`: 年毎のプレーヤーのランキングテーブルを作成する(実データだと10分かかる...)
 - `docker compose exec web rake 'database:create_year_player_ranking_in[2024]'`: 指定した年のプレーヤーのランキングテーブルを作成する
 - `docker compose exec web rake database:add_pgn_moves`: すでに保存されている対局の棋譜を上書き保存する
-- `docker compose exec web rake 'database:create_from_a_file[data/2024-ST/2024-01-01.csv]'`: ファイルを指定して対局結果を保存する
+
+ここまで実行すればローカル環境で動く。
+
+- `docker compose exec web rake 'database:create_from_a_file[data/2024-ST/2024-01-01.csv]'`: ファイルを指定して対局結果を保存する(本番環境で使用する。開発時は実行の必要はない。)
 
 ### pry
 1. set `binding.pry`
@@ -40,7 +43,7 @@
 - `git push origin feature/xxx`
 - PRを作成する
 
-## プロダクションデプロイ
+## プロダクションデプロイ(管理者用)
 - config/master.keyを本番環境に用意する
 - `docker compose -f docker-compose.production.yml build`
 - `docker compose -f docker-compose.production.yml up -d`
