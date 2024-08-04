@@ -2,7 +2,7 @@
 
 require 'csv'
 
-# rubocop:disable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize
+# rubocop:disable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize, Metrics/ModuleLength
 namespace :database do
   desc 'csvファイルから対局結果をデータベースに保存する'
   task create_data: :environment do
@@ -14,6 +14,13 @@ namespace :database do
         read_data(file)
       end
     end
+  end
+
+  desc '特定のcsvファイルから対局結果をデータベースから削除する'
+  task :remove_from_a_file, [:file_path] => :environment do |_task, args|
+    include CreateData
+    puts 'remove from a file'
+    remove_data(args.file_path)
   end
 
   desc '特定のcsvファイルから対局結果をデータベースに保存する'
@@ -96,6 +103,44 @@ namespace :database do
 end
 
 module CreateData
+  def remove_data(file)
+    # csvファイルを読み込んでデータベースから削除する
+    Rails.logger.info "remove data: #{file}"
+    csv_data = CSV.read(file, headers: true)
+
+    csv_data.each do |row|
+      # playerを取得する
+      white_id = row['White ID']
+      black_id = row['Black ID']
+      white = Player.find_by(ncs_id: white_id)
+      black = Player.find_by(ncs_id: black_id)
+
+      # tournamentを取得する
+      start_at = row['Date'].to_date
+      tournament_name = row['Source']
+      tournament = Tournament.find_by(name: tournament_name, start_at:)
+
+      # 条件が同じgameを削除する
+      white_rating = row['White Rating']
+      white_rating = 0 if white_rating.nil?
+      white_k = row['White K']
+      black_rating = row['Black Rating']
+      black_rating = 0 if black_rating.nil?
+      black_k = row['Black K']
+      white_point = row['White Point']
+      time_type = row['Time']
+      # 間違えて重複して保存している場合はすべて削除する
+      Game.where(
+        white:, white_k:, white_rating:,
+        black:, black_k:, black_rating:,
+        white_point:,
+        time_type:,
+        tournament:,
+        start_at:
+      ).destroy_all
+    end
+  end
+
   def read_data(file)
     # csvファイルを読み込んでデータベースに保存する
     Rails.logger.info "read: #{file}"
@@ -192,4 +237,4 @@ module CreateData
     file_pathes
   end
 end
-# rubocop:enable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize
+# rubocop:enable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize, Metrics/ModuleLength
