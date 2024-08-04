@@ -24,6 +24,7 @@
 ここまで実行すればローカル環境で動く。
 
 - `docker compose exec web rake 'database:create_from_a_file[data/2024-ST/2024-01-01.csv]'`: ファイルを指定して対局結果を保存する(本番環境で使用する。開発時は実行の必要はない。)
+- `docker compose exec web rake 'database:remove_from_a_file[data/2024-ST/2024-01-01.csv]'`: ファイルを指定して対局結果を削除する(間違えてデータを入れてしまった時用。)
 
 ### pry
 1. set `binding.pry`

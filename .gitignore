@@ -35,11 +35,13 @@
 /config/master.key
 
 /data/*/*.csv
+/data/*/*/*.csv
 /data/*/*.numbers
 /data/*/*.xlsx
 /data/*/*/*.xlsx
 /data/*/old/*
 /lib/python/venv-results
 !/data/ex/2024-01-01.csv
+!/data/ex/2024-07-01.csv
 
 .DS_Store
