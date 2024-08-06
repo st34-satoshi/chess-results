@@ -43,5 +43,7 @@
 /lib/python/venv-results
 !/data/ex/2024-01-01.csv
 !/data/ex/2024-07-01.csv
+/run/*
+!/run/.keep
 
 .DS_Store
