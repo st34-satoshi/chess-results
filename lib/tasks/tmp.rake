@@ -29,4 +29,27 @@ namespace :tmp do
       puts "updated"
     end
   end
+
+  desc 'playersのバリデーションチェック'
+  task check_players_validation: :environment do
+    puts "start checking playres validation"
+    puts "Player table"
+    Player.all.each do |player|
+      unless player.valid?
+        puts "ID=#{player.id}, ncs_id=#{player.ncs_id} is invalid: #{player.errors.full_messages.to_sentence}"
+      end
+    end
+
+    puts "year player tables"
+    PlayerYear.all.each do |year|
+      puts year.created_year
+      year_player = Player.clone
+      year_player.table_name = "#{year.created_year}_players"
+      year_player.all.each do |player|
+        unless player.valid?
+          puts "ID=#{player.id}, ncs_id=#{player.ncs_id} is invalid: #{player.errors.full_messages.to_sentence}"
+        end
+      end
+    end
+  end
 end
