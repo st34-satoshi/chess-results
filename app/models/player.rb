@@ -7,6 +7,8 @@ class Player < ApplicationRecord
   attribute :ranking_kind, :string
   enum ranking_kind: { games: 'games', win: 'win', draw: 'draw', avg_rating: 'avg_rating' }, _prefix: true
 
+  validates :ncs_id, format: { with: /\A[NFR]\d{8}\z/, message: 'must start with N, F, or R and be followed by exactly 8 digits' }
+
   def to_param
     ncs_id
   end
