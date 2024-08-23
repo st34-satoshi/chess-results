@@ -11,7 +11,7 @@ from datetime import datetime
 
 SPAN = 100
 
-def read_data(from_year=0, until_year=2030):
+def read_data(from_year=0, until_year=2030, min_min_rating=0, max_min_rating=3000):
     diffs = [] # [(diff, stronger_point)]
     with open("games.tsv", "r") as f:
         reader = csv.reader(f, delimiter="\t")
@@ -23,6 +23,9 @@ def read_data(from_year=0, until_year=2030):
             white = int(row[2])
             black = int(row[5])
             if white < 400 or black < 400:
+                continue
+            min_rating = min(white, black)
+            if min_rating < min_min_rating or min_rating > max_min_rating:
                 continue
             diff = abs(white - black)
             point = float(row[7])
@@ -80,6 +83,10 @@ def graph(diff_hash_list):
             avg_points.append(avg)
             x_data.append(i * SPAN + SPAN / 2 - 10 + 10 * j)
             # x_data.append(i * SPAN + SPAN / 2 - 25 + 50 * i)
+        # Add value labels on top of each bar
+        # for i, v in enumerate(avg_points):
+        #     plt.text(x_data[i]-10+10*j, v, f'{v:.2f}', ha='center', va='bottom')
+        # plt.text(x_data[0], avg, f'{v:.2f}', ha='center', va='bottom')
         plt.bar(x_data, avg_points, width=10, label=name)
     expect_points = [0.58, 0.71, 0.81, 0.89, 0.94, 0.97, 0.99]
     plt.plot(x_data, expect_points, "-or", label="期待値")
@@ -93,9 +100,16 @@ def graph(diff_hash_list):
 if __name__ == '__main__':
     data_all = read_data()
     data_all = to_hash(data_all)
-    data_2022 = read_data(until_year=2022)
-    data_2022 = to_hash(data_2022)
-    data_2023 = read_data(from_year=2023)
-    data_2023 = to_hash(data_2023)
+    # data_2022 = read_data(until_year=2022)
+    # data_2022 = to_hash(data_2022)
+    # data_2023 = read_data(from_year=2023)
+    # data_2023 = to_hash(data_2023)
+    data_low = read_data(min_min_rating=1400, max_min_rating=1600)
+    data_low = to_hash(data_low)
+    data_mid = read_data(min_min_rating=1601, max_min_rating=1800)
+    data_mid = to_hash(data_mid)
+    data_high = read_data(min_min_rating=1801, max_min_rating=2000)
+    data_high = to_hash(data_high)
     # write_csv(data)
-    graph([(data_all, "全期間"), (data_2022, "2022年以前"), (data_2023, "2023年以降")])
+    # graph([(data_all, "全期間"), (data_2022, "2022年以前"), (data_2023, "2023年以降")])
+    graph([(data_low, "低いプレーヤーR1400~1600"), (data_mid, "低いプレーヤーR1601~1800"), (data_high, "低いプレーヤーのR1801~2000")])
