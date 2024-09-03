@@ -29,9 +29,11 @@ class Game < ApplicationRecord
   end
 
   def self.draw_games_during(player, from_at, until_at)
-    Game.where(white_id: player.id).or(Game.where(black_id: player.id)).where(white_point: 0).where('start_at >= ?', from_at).where(
-      'start_at <= ?', until_at
-    )
+    Game.where(white_id: player.id)
+        .or(Game.where(black_id: player.id))
+        .where(white_point: 0.5)
+        .where('start_at >= ?', from_at)
+        .where('start_at <= ?', until_at)
   end
 
   def self.loss_games_during(player, from_at, until_at)
