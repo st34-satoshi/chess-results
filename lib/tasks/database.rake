@@ -170,13 +170,17 @@ module CreateData
       black_k = row['Black K']
       white_point = row['White Point']
       time_type = row['Time']
+      white_change = row['White Change']&.to_f
+      black_change = row['Black Change']&.to_f
       g = Game.create(
         white:, white_k:, white_rating:,
         black:, black_k:, black_rating:,
         white_point:,
         time_type:,
         tournament:,
-        start_at:
+        start_at:,
+        white_change:,
+        black_change:
       )
       puts g.errors.full_messages if g.errors.present?
     end

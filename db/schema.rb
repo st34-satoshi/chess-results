@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_30_035237) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_10_075600) do
   create_table "2019_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "ncs_id", null: false
     t.string "name_en"
@@ -109,6 +109,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_035237) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "pgn_moves"
+    t.decimal "white_change", precision: 10, scale: 3
+    t.decimal "black_change", precision: 10, scale: 3
     t.index ["start_at"], name: "index_games_on_start_at"
     t.index ["tournament_id"], name: "index_games_on_tournament_id"
   end
