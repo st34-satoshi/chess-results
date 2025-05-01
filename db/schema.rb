@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_10_075600) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_01_085714) do
   create_table "2019_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "ncs_id", null: false
     t.string "name_en"
@@ -95,6 +95,20 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_075600) do
     t.index ["ncs_id"], name: "index_2024_players_on_ncs_id", unique: true
   end
 
+  create_table "2025_players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ncs_id", null: false
+    t.string "name_en"
+    t.string "name_jp"
+    t.integer "total_game_count"
+    t.integer "total_win_count"
+    t.integer "total_loss_count"
+    t.integer "total_draw_count"
+    t.float "total_opponent_rating_average"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ncs_id"], name: "index_2025_players_on_ncs_id", unique: true
+  end
+
   create_table "games", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "white_id"
     t.integer "white_rating", null: false
@@ -111,6 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_10_075600) do
     t.text "pgn_moves"
     t.decimal "white_change", precision: 10, scale: 3
     t.decimal "black_change", precision: 10, scale: 3
+    t.integer "round"
     t.index ["start_at"], name: "index_games_on_start_at"
     t.index ["tournament_id"], name: "index_games_on_tournament_id"
   end

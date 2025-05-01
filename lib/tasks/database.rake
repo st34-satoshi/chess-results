@@ -162,6 +162,7 @@ module CreateData
       tournament ||= Tournament.create(name: tournament_name, start_at:)
 
       # gameを保存する
+      round = row['Round']&.to_i
       white_rating = row['White Rating']
       white_rating = 0 if white_rating.nil?
       white_k = row['White K']
@@ -180,7 +181,8 @@ module CreateData
         tournament:,
         start_at:,
         white_change:,
-        black_change:
+        black_change:,
+        round:
       )
       puts g.errors.full_messages if g.errors.present?
     end
